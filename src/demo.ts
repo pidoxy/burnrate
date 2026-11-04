@@ -109,7 +109,7 @@ export function generateDemo(days = 30, now = Date.now()): { root: string; claud
         fs.mkdirSync(dir, { recursive: true });
         fs.writeFileSync(path.join(dir, `rollout-${sessionId}.jsonl`), lines.join("\n") + "\n");
       } else {
-        const dir = path.join(claude, project.replace(/[\\/]/g, "-"));
+        const dir = path.join(claude, project.replace(/[\\/:]/g, "-"));
         fs.mkdirSync(dir, { recursive: true });
         fs.writeFileSync(path.join(dir, `${sessionId}.jsonl`), lines.join("\n") + "\n");
       }
