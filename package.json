@@ -1,0 +1,41 @@
+{
+  "name": "burnrate",
+  "version": "0.1.0",
+  "description": "See what your coding agents really cost — and when you'll hit the limit. Local, multi-agent spend & quota meter for Claude Code and Codex.",
+  "type": "module",
+  "bin": {
+    "burnrate": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
+    "dev": "npm run build && node dist/cli.js",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "claude-code",
+    "codex",
+    "ai",
+    "cost",
+    "usage",
+    "tokens",
+    "quota",
+    "cli",
+    "statusline"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  }
+}
