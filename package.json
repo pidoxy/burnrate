@@ -40,10 +40,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pidoxy/prod2.git"
+    "url": "git+https://github.com/pidoxy/burnrate.git"
   },
-  "homepage": "https://github.com/pidoxy/prod2#readme",
+  "homepage": "https://github.com/pidoxy/burnrate#readme",
   "bugs": {
-    "url": "https://github.com/pidoxy/prod2/issues"
+    "url": "https://github.com/pidoxy/burnrate/issues"
   }
 }
