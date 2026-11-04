@@ -123,7 +123,7 @@ src/
 
 Docs: [Product requirements](docs/PRD.md) · [Design](docs/DESIGN.md)
 
-**Releasing.** Push a `v*` tag. The release workflow tests, builds and publishes to npm with provenance (it needs an `NPM_TOKEN` secret).
+**Releasing.** Bump `version` in `package.json` and push to `main`. The release workflow publishes to npm with provenance (trusted publishing, or an `NPM_TOKEN` secret), then creates the tag and GitHub release.
 
 ## License
 

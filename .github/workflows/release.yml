@@ -1,7 +1,11 @@
 name: Release
+# Publishes when package.json's version isn't on npm yet (bump the version on main to release),
+# or when a v* tag is pushed. Creates the git tag and GitHub release automatically.
 on:
   push:
+    branches: [main]
     tags: ["v*"]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,16 +20,36 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
+      - name: Is this version already published?
+        id: check
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "$NAME@$VERSION is already on npm — nothing to do."
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
       # Trusted publishing (OIDC) needs npm >= 11.5.
-      - run: npm install -g npm@latest
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
+      - if: steps.check.outputs.publish == 'true'
+        run: npm install -g npm@latest
+      - if: steps.check.outputs.publish == 'true'
+        run: npm ci
+      - if: steps.check.outputs.publish == 'true'
+        run: npm test
+      - if: steps.check.outputs.publish == 'true'
+        run: npm run build
       # Uses NPM_TOKEN if the secret exists (first release); otherwise npm's
       # trusted publishing via this workflow's OIDC identity — no stored token.
-      - run: npm publish --provenance --access public
+      - if: steps.check.outputs.publish == 'true'
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - uses: softprops/action-gh-release@v2
+      - if: steps.check.outputs.publish == 'true'
+        uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.check.outputs.version }}
+          name: v${{ steps.check.outputs.version }}
           generate_release_notes: true
