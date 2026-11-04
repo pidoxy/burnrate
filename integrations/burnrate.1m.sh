@@ -8,5 +8,5 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.npm-global/bin:$PATH"
 if command -v burnrate >/dev/null 2>&1; then
   burnrate bar --no-color
 else
-  npx --yes burnrate bar --no-color
+  npx --yes burnrate-cli bar --no-color
 fi

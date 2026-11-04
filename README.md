@@ -10,8 +10,8 @@ Burnrate is a local, zero-dependency spend and quota meter for **Claude Code** a
 - a **status line** for Claude Code, a **menu-bar** plugin, a terminal summary and CSV export
 
 ```bash
-npx burnrate          # opens http://127.0.0.1:4317
-npx burnrate demo     # try it with 30 days of synthetic data
+npx burnrate-cli      # opens http://127.0.0.1:4317
+npx burnrate-cli demo # try it with 30 days of synthetic data
 ```
 
 ![Burnrate dashboard](docs/screenshots/dashboard-light.png)
@@ -29,7 +29,7 @@ Burnrate deduplicates by `message.id + requestId` and prices every component. It
 ## Install
 
 ```bash
-npm i -g burnrate        # or use npx burnrate
+npm i -g burnrate-cli    # installs the `burnrate` command (or use npx burnrate-cli)
 ```
 
 Requires Node 20+. Works on macOS, Linux and Windows.

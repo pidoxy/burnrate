@@ -1,7 +1,7 @@
 {
-  "name": "burnrate",
+  "name": "burnrate-cli",
   "version": "0.1.0",
-  "description": "See what your coding agents really cost — and when you'll hit the limit. Local, multi-agent spend & quota meter for Claude Code and Codex.",
+  "description": "See what your coding agents really cost \u2014 and when you'll hit the limit. Local, multi-agent spend & quota meter for Claude Code and Codex.",
   "type": "module",
   "bin": {
     "burnrate": "dist/cli.js"
@@ -37,5 +37,13 @@
     "@types/node": "^22.20.5",
     "typescript": "^5.9.3",
     "vitest": "^5.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pidoxy/prod2.git"
+  },
+  "homepage": "https://github.com/pidoxy/prod2#readme",
+  "bugs": {
+    "url": "https://github.com/pidoxy/prod2/issues"
   }
 }
